@@ -26,7 +26,7 @@ if __name__ == '__main__':
 	goal = MoveBaseGoal()
 	goal.target_pose.header.frame_id = 'map'
 	goal.target_pose.header.stamp = rospy.Time.now()
-	goal.target_pose.pose = Pose(Point(3.0, 0.0, 0), heading(3.14))
+	goal.target_pose.pose = Pose(Point(1.6, 1.13, 0), heading(3.14))
 
 	# An action client for move base
 	move_base = actionlib.SimpleActionClient('move_base', MoveBaseAction)
