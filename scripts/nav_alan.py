@@ -1,4 +1,3 @@
-
 #!/usr/bin/env python
 
 import rospy
@@ -8,7 +7,7 @@ from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
 from geometry_msgs.msg import Pose, Point, Quaternion
 from actionlib_msgs.msg import GoalStatus
 from tf.transformations import quaternion_from_euler
-
+import numpy as np
 
 
 def heading(yaw):
@@ -16,6 +15,10 @@ def heading(yaw):
 	q = quaternion_from_euler(0, 0, yaw)
 	return Quaternion(*q)
 
+### target point
+#  x: 0.0464204209962
+#   y: 0.4572592885
+#   z: 0.844115513654
 
 if __name__ == '__main__':
 	# Initialize the node
@@ -26,7 +29,7 @@ if __name__ == '__main__':
 	goal = MoveBaseGoal()
 	goal.target_pose.header.frame_id = 'map'
 	goal.target_pose.header.stamp = rospy.Time.now()
-	goal.target_pose.pose = Pose(Point(1.6, 1.13, 0), heading(3.14))
+	goal.target_pose.pose = Pose(Point(-0.37-0.25,0.08, 0), heading((np.pi/180.0)*20.0))
 
 	# An action client for move base
 	move_base = actionlib.SimpleActionClient('move_base', MoveBaseAction)
